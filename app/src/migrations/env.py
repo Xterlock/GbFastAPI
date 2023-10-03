@@ -7,11 +7,11 @@ from sqlalchemy.ext.asyncio import async_engine_from_config
 
 from alembic import context
 
-from db.connect import DB_URL
-from db.model import Base
-from models.order import OrderStatus
-from models.product import Product
-from models.user import User
+from src.db.connect import DB_URL
+from src.db.model import Base
+from src.models.order import OrderStatus
+from src.models.product import Product
+from src.models.user import User
 
 config = context.config
 config.set_main_option("sqlalchemy.url", DB_URL)
