@@ -1,14 +1,15 @@
-FROM python:3.11-slim
+FROM python:3.11.2-slim-buster
 
-WORKDIR code/
+WORKDIR /code
 
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 # install system dependencies
-RUN apt-get update && apt-get -y upgrade \
-  && apt-get -y install gcc postgresql
+RUN apt-get update \
+  && apt-get -y install netcat gcc postgresql \
+  && apt-get clean
 
 
 RUN pip install --upgrade pip
@@ -17,3 +18,6 @@ RUN pip install -r requirements.txt
 
 
 COPY . .
+COPY ./entrypoint.sh .
+RUN chmod 755 /code/entrypoint.sh
+ENTRYPOINT ["/code/entrypoint.sh"]

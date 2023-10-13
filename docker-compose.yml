@@ -9,14 +9,9 @@ services:
       - .env
     ports:
       - "8080:8080"
-    volumes:
-      - ./app:/code
-
 
   database:
     image: postgres:15.3-bookworm
     container_name: web-provider-postgres_db
-    ports:
-      - "5432:5432"
     env_file:
         - .env.db
